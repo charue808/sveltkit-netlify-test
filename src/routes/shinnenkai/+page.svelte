@@ -27,7 +27,7 @@
 		<p>
 			Information about registration goes here. Manage expectations for users.
 		</p>
-		<form name="shinnenkai rsvp" netlify method="POST" action="?/rsvp" use:enhance={({ formData }) => {
+		<form name="shinnenkai rsvp" netlify method="POST" action="/success" use:enhance={({ formData }) => {
 			formData.append('Total RSVP', `${totalRSVP}`);
 			formData.append('Total Cost', `${total}`)
 		}}>
