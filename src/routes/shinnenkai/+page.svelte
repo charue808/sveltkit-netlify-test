@@ -1,7 +1,3 @@
-<script module lang="ts">
-	export const prerender = true;
-</script>
-
 <script lang=ts>
 	import { enhance } from '$app/forms';
 	let guests = $state([]);
@@ -31,7 +27,7 @@
 		<p>
 			Information about registration goes here. Manage expectations for users.
 		</p>
-		<form name="shinnenkai rsvp" data-netlify="true" method="POST" use:enhance={({ formData }) => {
+		<form name="shinnenkai rsvp" netlify method="POST" use:enhance={({ formData }) => {
 			formData.append('Total RSVP', `${totalRSVP}`);
 			formData.append('Total Cost', `${total}`)
 		}}>
