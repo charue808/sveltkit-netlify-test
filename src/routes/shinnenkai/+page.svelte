@@ -1,3 +1,7 @@
+<script module lang="ts">
+	export const prerender = true;
+</script>
+
 <script lang=ts>
 	import { enhance } from '$app/forms';
 	let guests = $state([]);
