@@ -1,6 +1,8 @@
 import { fail } from "@sveltejs/kit";
 import type { Actions } from "./$types";
 
+export const prerender = true;
+
 export const actions = {
 	default: async ({ url, request }) => {
 	
