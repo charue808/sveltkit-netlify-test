@@ -1,3 +1,4 @@
+import { fail } from '@sveltejs/kit';
 import type { Actions } from './$types';
 
 export const actions = {
@@ -7,13 +8,28 @@ export const actions = {
 
 		let origin = url.origin
 
-		fetch(`${origin}/shinnenkai`, {
-			method: "POST",
-			headers: { "Content-Type": "application/x-www-form-urlencoded" },
-			body: new URLSearchParams(formData).toString()
-		})
-			.then(() => alert("Thank you for your submission"))
-			.catch(error => alert(error));
+		try {
+			const response = await fetch(`${origin}/shinnenkai`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded'
+				},
+				body: new URLSearchParams(formData).toString()
+			});
+
+			const data = await response.text();
+
+			if (response.status !== 200)
+				return fail(response.status, {
+					postFail: true,
+					err: `Something went wrong, please try again., Error: ${data}`,
+				});
+
+			return { success: true };
+		} catch (err) {
+			console.log('error: ', err);
+			return fail(500, { postFail: true, err });
+		}
 
 	}
 } satisfies Actions;
