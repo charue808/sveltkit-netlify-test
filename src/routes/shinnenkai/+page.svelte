@@ -5,6 +5,15 @@
 	let totalRSVP = $derived((guests.length + 1))
 
 	export const prerender = true;
+
+	/**
+	 *  use:enhance={({ formData }) => {
+			formData.append('Total RSVP', `${totalRSVP}`);
+			formData.append('Total Cost', `${total}`)
+		}}>
+	 * 
+	 * 
+	*/
 </script>
 
 <section class="hero is-small is-primary">
@@ -29,10 +38,7 @@
 		<p>
 			Information about registration goes here. Manage expectations for users.
 		</p>
-		<form name="shinnenkai rsvp" data-netlify="true" method="POST" use:enhance={({ formData }) => {
-			formData.append('Total RSVP', `${totalRSVP}`);
-			formData.append('Total Cost', `${total}`)
-		}}>
+		<form name="shinnenkai rsvp" data-netlify="true" method="POST">
 			<input name="form-name" type="hidden" value="shinnenkai-rsvp" />
 			<div class="field">
 				<label for="name" class="label">Full Name</label>
