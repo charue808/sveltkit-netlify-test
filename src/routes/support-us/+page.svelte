@@ -3,7 +3,7 @@
 	<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
 </div>
 
-<form name="test" method="post" action="/success" netlify>
+<form name="test" method="post" action="?/rsvp" netlify>
 	<input type="hidden" name="form-name" value="test" />
 	<input type="hidden" name="bot-field" />
 	<p>
