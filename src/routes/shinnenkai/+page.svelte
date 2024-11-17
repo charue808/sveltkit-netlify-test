@@ -28,10 +28,11 @@
 		<p>
 			Information about registration goes here. Manage expectations for users.
 		</p>
-		<form method="POST" use:enhance={({ formData }) => {
+		<form name="shinnenkai rsvp" data-netlify="true" method="POST" use:enhance={({ formData }) => {
 			formData.append('Total RSVP', `${totalRSVP}`);
 			formData.append('Total Cost', `${total}`)
 		}}>
+			<input name="form-name" type="hidden" value="shinnenkai-rsvp" />
 			<div class="field">
 				<label for="name" class="label">Full Name</label>
 				<div class="control">
