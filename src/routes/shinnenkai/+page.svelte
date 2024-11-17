@@ -4,6 +4,7 @@
 	let total = $derived((guests.length + 1) * 65.00)
 	let totalRSVP = $derived((guests.length + 1))
 
+	export const prerender = true;
 </script>
 
 <section class="hero is-small is-primary">
