@@ -6,11 +6,6 @@
 
 	export const prerender = true;
 
-	/**
-	 *  
-	 * 
-	 * 
-	*/
 </script>
 
 <section class="hero is-small is-primary">

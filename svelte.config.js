@@ -15,7 +15,13 @@ const config = {
 		adapter: adapter({
 			edge: false,
 			split: false
-		})
+		}),
+		prerender: {
+			crawl: true,
+			enabled: true,
+			force: true,
+			pages: ['*'],
+		}
 	},
 
 	extensions: ['.svelte', '.svx', '.md']
