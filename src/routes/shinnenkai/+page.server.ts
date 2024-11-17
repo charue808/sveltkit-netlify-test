@@ -7,7 +7,7 @@ export const actions = {
 		console.log('form data:', formData)
 
 		let origin = url.origin
-
+		console.log('origin: ', origin)
 		try {
 			const response = await fetch(`${origin}/shinnenkai`, {
 				method: 'POST',
@@ -18,7 +18,7 @@ export const actions = {
 			});
 
 			const data = await response.text();
-
+			console.log('data response: ', data)
 			if (response.status !== 200)
 				return fail(response.status, {
 					postFail: true,
