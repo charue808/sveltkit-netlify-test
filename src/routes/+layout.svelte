@@ -5,7 +5,7 @@
 
   let isActive = $state(false);
 
-
+  export const prerender = true;
 </script>
 
 <nav class="navbar" aria-label="main navigation">
