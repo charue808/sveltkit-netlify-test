@@ -2,12 +2,24 @@ import { fail } from '@sveltejs/kit';
 import type { Actions } from './$types';
 
 export const actions = {
-	default: async ({ url, request }) => {
+	rsvp: async ({ url, request }) => {
 		const formData = await request.formData();
 		console.log('form data:', formData)
 
 		let origin = url.origin
 		console.log('origin: ', origin)
+
+		const response = await fetch(`${origin}/shinnenkai`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			body: new URLSearchParams(formData).toString()
+		});
+
+		const data = await response.text();
+		console.log('data response: ', data)
+		/*
 		try {
 			const response = await fetch(`${origin}/shinnenkai`, {
 				method: 'POST',
@@ -29,7 +41,7 @@ export const actions = {
 		} catch (err) {
 			console.log('error: ', err);
 			return fail(500, { postFail: true, err });
-		}
+		}*/
 
 	}
 } satisfies Actions;
