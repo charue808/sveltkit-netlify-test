@@ -6,42 +6,5 @@ export const actions = {
 		const formData = await request.formData();
 		console.log('form data:', formData)
 
-		let origin = url.origin
-		console.log('origin: ', origin)
-
-		const response = await fetch(`${origin}/shinnenkai`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded'
-			},
-			body: new URLSearchParams(formData).toString()
-		});
-
-		const data = await response.text();
-		console.log('data response: ', data)
-		/*
-		try {
-			const response = await fetch(`${origin}/shinnenkai`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/x-www-form-urlencoded'
-				},
-				body: new URLSearchParams(formData).toString()
-			});
-
-			const data = await response.text();
-			console.log('data response: ', data)
-			if (response.status !== 200)
-				return fail(response.status, {
-					postFail: true,
-					err: `Something went wrong, please try again., Error: ${data}`,
-				});
-
-			return { success: true };
-		} catch (err) {
-			console.log('error: ', err);
-			return fail(500, { postFail: true, err });
-		}*/
-
 	}
 } satisfies Actions;
