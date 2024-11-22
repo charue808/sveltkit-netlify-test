@@ -24,7 +24,7 @@
 			</div>
 			<div class="column is-6">
 				<div class="mb-3">
-					<form name="contact" method="POST">
+					<form name="contact" method="POST" action='?/contact'>
 		
 					<div class="field">
 						<label for="name" class="label">Name</label>
