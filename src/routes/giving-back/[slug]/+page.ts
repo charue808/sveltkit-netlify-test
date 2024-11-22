@@ -1,15 +1,12 @@
 import { error } from '@sveltejs/kit';
+import type { PageLoad } from './$types';
 
-export async function load({ params }) {
+export const load: PageLoad = ({ params }) => {
 
-	try {
-		const page = await import(`../../../pages/${params.slug}.md`)
+	return {
+		title: `Hello ${params.slug}!`,
+		content: `Welcome to ${params.slug}. Lorem ipsum dolor sit amet...`
+	};
 
-		return {
-			content: page.default,
-			meta: page.metadata
-		}
-	} catch (e) {
-		error(404, `Could not find ${params.slug}`)
-	}
-}
+
+};
