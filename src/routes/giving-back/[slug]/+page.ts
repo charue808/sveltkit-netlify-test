@@ -1,6 +1,7 @@
 import { error } from '@sveltejs/kit';
 
 export async function load({ params }) {
+
 	try {
 		const page = await import(`../../../pages/${params.slug}.md`)
 

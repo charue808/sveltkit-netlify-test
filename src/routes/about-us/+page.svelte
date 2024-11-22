@@ -1,4 +1,13 @@
-<div class="container">
-	<h1 class="title is-1">About Us</h1>
-	<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
-</div>
+<script>
+import Markdown from 'svelte-exmarkdown';
+let md = $state('# About Us');
+
+</script>
+
+<section>
+	<div class="container">
+	<div class="content">
+		<Markdown {md} />
+	</div>
+	</div>
+</section>

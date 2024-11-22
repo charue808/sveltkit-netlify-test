@@ -1,9 +1,29 @@
 <script lang=ts>
+	import * as config from '$lib/config';
+	import { maska } from "maska/svelte";
 	import { enhance } from '$app/forms';
+
+	
+	let count = $state(0);
+	let isChecked = $state(false);
 	let guests = $state([]);
 	let total = $derived((guests.length + 1) * 65.00)
 	let totalRSVP = $derived((guests.length + 1))
+
+	$effect(() => {
+		if(!isChecked) {
+			count = 0;
+		}
+		if (isChecked) {
+			count = 1;
+		}
+	});
+
 </script>
+
+<svelte:head>
+	<title>Shinnenkai - {config.title} </title>
+</svelte:head>
 
 <section class="hero is-small is-primary">
 	<div class="hero-body">
@@ -27,49 +47,60 @@
 		<p>
 			Information about registration goes here. Manage expectations for users.
 		</p>
-		<form name="shinnenkai rsvp" netlify method="POST" use:enhance={({ formData }) => {
+		<form name="shinnenkai rsvp" method="POST" use:enhance={({ formData }) => {
 			formData.append('Total RSVP', `${totalRSVP}`);
 			formData.append('Total Cost', `${total}`)
 		}}>
-			<input name="form-name" type="hidden" value="shinnenkai-rsvp" />
 			<div class="field">
 				<label for="name" class="label">Full Name</label>
 				<div class="control">
-					<input id="name" class="input" type="text" name="FullName" />
+					<input id="name" class="input" type="text" name="FullName" required />
 				</div>
 			</div>
 			<div class="field">
 				<label for="email" class="label">Email</label>
 				<div class="control">
-					<input id="email" class="input" type="email" name="Email" />
+					<input id="email" class="input" type="email" name="Email" required />
 				</div>
 			</div>
 			<div class="field">
 				<label for="phone" class="label">Phone</label>
 				<div class="control">
-					<input id="phone" class="input" type="tel" name="PhoneNumber" />
+					<input use:maska={'+1-###-###-####'} type="tel" class="input" id="phone" name="Phone" required />
 				</div>
 			</div>
 			<div class="field">
-				<label for="guestCount" class="label">How many guests would you like to bring?</label>
 				<div class="control">
-					<input id="guestCount" type="number" class="input" bind:value={guests.length} disabled name="GuestCount"/>
-				</div>
-				<button type="button" class="button is-primary" disabled={guests.length <= 0} onclick={() => guests.pop() }>Decrement</button>
-				<button type="button" class="button is-primary" onclick={() => guests.push(guests.length + 1)}>Increment</button>
-			</div>
-			{#each guests as guest}
-			<div class="field">
-				<label for={`guest-${guest}`} class="label">Guest #{guest}</label>
-				<div class="control">
-					<input id={`guest-${guest}`} class="input" type="text" name="GuestName{guest}" />
+					<label class="checkbox">
+						<input type="checkbox" bind:checked={isChecked} required />
+						Would you like to bring a guest(s)?
+					</label>
 				</div>
 			</div>
-			{/each}
+			{#if isChecked}
+			<div class="columns">
+				<div class="column">
+					<div class="is-flex is-flex-direction-row">
+						<button type="button" class="button is-primary" onclick={() => count -= 1}>Decrement</button>
+						<div class="box"><span class="is-size-1">{count}</span></div>
+						<button type="button" class="button is-primary" onclick={() => count  += 1}>Increment</button>
+					</div>
+
+				</div>
+				<div class="column">
+					<div class="field">
+						<label for="guest" class="label">Guest</label>
+						<div class="control">
+							<input type="text" class="input" />
+						</div>
+					</div>
+				</div>
+			</div>
+			{/if}
 			<div class="field">
 				<div class="control">
 					<label class="radio">
-						<input type="radio" name="payment" value="Check" />
+						<input type="radio" name="payment" value="Check" required />
 						Check
 					</label>
 					<label class="radio">
@@ -91,3 +122,4 @@
 		</form>
 	</div>
 </section>
+

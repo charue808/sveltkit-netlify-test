@@ -1,6 +1,6 @@
 <script>
 	import Markdown from 'svelte-exmarkdown';
-	let md = $state('# support us!');
+	let md = $state('# publications!');
 	
 	</script>
 	

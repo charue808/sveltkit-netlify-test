@@ -1,6 +1,6 @@
 <script>
 	import Markdown from 'svelte-exmarkdown';
-	let md = $state('# support us!');
+	let md = $state('# community events!');
 	
 	</script>
 	
@@ -11,3 +11,5 @@
 		</div>
 		</div>
 	</section>
+
+
