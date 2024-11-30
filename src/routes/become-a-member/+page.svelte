@@ -3,9 +3,8 @@
 	import Markdown from 'svelte-exmarkdown';
 	let { data }: { data: PageData } = $props();
 	let md = $state('# Membership!!!');
-	
-</script>
-	
+	</script>
+
 	<section>
 		<div class="container">
 		<div class="content">
