@@ -1,0 +1,47 @@
+@charset "utf-8";
+/* Write your global styles here, in SCSS syntax.
+Variables and mixins from the src/variables.scss file are available here without importing */
+@use 'variables';
+/* Import only what you need from Bulma */
+//@use "pkg:bulma";
+// Path to Bulma's sass folder
+
+@use "pkg:bulma/sass" with (
+  $family-primary: "'Noto Serif','Lucida Sans Unicode','Arial Unicode MS','Lucida Grande',Arial,Helvetica,sans-serif",
+  $primary: variables.$purple,
+  $title-color: variables.$white,
+  $subtitle-color: variables.$white,
+);
+
+
+@use "pkg:bulma/sass/layout/hero";
+
+.hero-img-lrg {
+  @extend %hero !optional;
+  background: 
+  /* top, transparent red */ 
+  linear-gradient(141deg,
+    rgba(115,79,150, 0.95), 
+    rgba(115,79,150, 0.75)
+  ),
+  /* bottom, image */
+  url(https://res.cloudinary.com/daq9dkhqd/image/upload/v1612409746/irises_kzwzmk.webp);
+  background-position: top;
+  background-size: cover;
+}
+
+.hero-img-med {
+  @extend %hero !optional;
+  background: 
+  /* top, transparent red */ 
+  linear-gradient(141deg,  rgba(115,79,150, 1), 
+  rgba(115,79,150, 0.90)
+  ),
+  /* bottom, image */
+  url(https://res.cloudinary.com/daq9dkhqd/image/upload/v1612410005/HeaderBackground_wigsjz.webp);
+  background-position: bottom;
+  background-size: cover;
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');

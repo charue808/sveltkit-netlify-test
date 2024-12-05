@@ -1,16 +1,14 @@
 <script>
-	import 'bulma/css/bulma.css';
+  import "../app.scss";
   import brand from '$lib/imgs/JWSF_DigitalLogo.webp';
 	import * as config from '$lib/config';
 	let { children } = $props();
 
   let isActive = $state(false);
-
+  
 </script>
 
 <header>
-
-
 <nav class="navbar is-spaced" aria-label="main navigation">
   <div class="navbar-brand">
     <a class="navbar-item" aria-label="JWSF Logo link to home page" href={config.url}>
@@ -112,7 +110,7 @@
   </div>
 </footer>
 
-<style>
+<style class="scss">
 
 main {
   min-height: 75vh;

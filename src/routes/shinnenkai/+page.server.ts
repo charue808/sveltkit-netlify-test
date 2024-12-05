@@ -22,7 +22,7 @@ export const actions = {
 		const parsedData = reservationSchema.safeParse(formDataa)
 		console.log(parsedData, parsedData.error)
 		if (parsedData.success) {
-			const response = await fetch('https://eojh6idmcs66pre.m.pipedream.net', {
+			const response = await fetch('https://hook.us2.make.com/mfsml1rgtiahrntg45u9ea2d62ats93b', {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",

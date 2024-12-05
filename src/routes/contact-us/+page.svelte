@@ -8,7 +8,7 @@
 	<meta name="description" content="Let us know how we're doing or how we can better serve our community." />
 </svelte:head>
 
-<section class="hero is-primary">
+<section class="hero is-medium hero-img-med is-primary">
 	<div class="hero-body">
 		<h1 class="title">Get In Touch</h1>
 		<h2 class="subtitle">We look forward to hearing from you</h2>
