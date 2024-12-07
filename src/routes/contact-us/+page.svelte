@@ -1,6 +1,9 @@
-<script>
+<script lang="ts">
 	import * as config from '$lib/config';
+	import type { ActionData } from './$types';
 	import { enhance } from "$app/forms";
+	import { error } from '@sveltejs/kit';
+	let { form }: { form: ActionData } = $props();
 </script>
 
 <svelte:head>
@@ -19,13 +22,24 @@
 		<div class="columns">
 			<div class="column is-6 content">
 				<h3>Instructions</h3>
-				<p>If interested in learning more about The Japanese Women’s Society Foundation, we welcome you to contact us by entering your contact information in the fields on this page and clicking on the “Send” button.
+				<p>If you are interested in learning more about The Japanese Women’s Society Foundation, we welcome you to contact us by entering your contact information in the fields on this page and clicking on the “Send” button.
 				</p>
 			</div>
 			<div class="column is-6">
+				{#if form?.success} 
+					<div class="notification is-success is-light">
+						<p>
+							Success thanks for submitting the form!
+						</p>
+					</div>
+				{/if}
+				{#if form?.error}
+					<div class="notification is-error is-light">
+						<p>Oh No Error!</p>
+					</div>
+				{/if}
 				<div class="mb-3">
-					<form name="contact" method="POST" action='?/contact'>
-		
+					<form name="contact" method="POST" use:enhance>
 					<div class="field">
 						<label for="name" class="label">Name</label>
 						<div class="control">
@@ -56,7 +70,7 @@
 								
 					<div class="field">
 						<div class="control">
-							<button type="submit" class="button is-success">Send</button>
+							<button type="submit" class="button is-primary">Send</button>
 						</div>
 					</div>
 					</form>

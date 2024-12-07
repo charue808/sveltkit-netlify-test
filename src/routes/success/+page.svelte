@@ -7,7 +7,7 @@
 </script>
 <svelte:head>
 	<title>{data.title} - {config.title}</title>
-	<meta name="description" content="" />
+	<meta name="description" content={data.description} />
 </svelte:head>
 <section class="section is-large">
 	<div class="container has-text-centered">

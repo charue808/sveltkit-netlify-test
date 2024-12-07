@@ -48,8 +48,8 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <a class="button is-primary" href="/support-us">
-            <strong>Donate Today</strong>
+          <a class="button is-primary" href="/support-us/donations">
+            <strong>Make a Donation</strong>
           </a>
         </div>
       </div>

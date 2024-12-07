@@ -3,7 +3,7 @@
 	import type { PageData } from './$types';
 	let { data }: { data: PageData } = $props();
 	import Markdown from 'svelte-exmarkdown';
-	let md = $state('# community events!');
+	let md = $state(data.content);
 </script>
 
 <svelte:head>
@@ -24,57 +24,3 @@
 	</div>
 	</div>
 </section>
-
-
-<style>
-	/*
-.call-out {
-  padding: 1rem;
-  background-color: #F6F6FF;
-  border-radius: .75rem;
-}
-
-
-.event-item {
-  border-bottom: solid 1px #d8d8d8;
-  margin-top: 2.5rem;
-}
-
-div.box > article.event-item:first-child {
-  margin-top: .5rem;
-}
-
-div.box > article.event-item:last-child {
-  border-bottom: none;
-}
-
-.event-content {
-  margin-bottom: 3rem;
-}
-
-.event-info {
-  margin-bottom: 0rem !important;
-  font-size: .9rem;
-  color: hsl(0, 0%, 48%);
-}
-
-.event-date {
-
-}
-
-.event-time {
-
-}
-
-.event-location {
-  margin-top: 0px;
-  font-size: .9rem;
-  color: hsl(0, 0%, 48%);
-}
-
-.event-spacer {
-  margin-left: 5px;
-  margin-right: 5px;
-}
-*/
-</style>

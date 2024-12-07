@@ -1,11 +1,16 @@
 <script lang="ts">
 	import * as config from '$lib/config';
+	import type { ActionData } from './$types';
 	import { maska } from "maska/svelte";
 	import { enhance } from '$app/forms';
 	import FaAddSign from 'virtual:icons/fa-solid/plus';
 	import FaMinusSign from 'virtual:icons/fa-solid/minus';
+	import FaMapAlt from 'virtual:icons/fa-solid/map-marked-alt';
+	import eventImage from '$lib/imgs/2025ShinnenkaiCover.webp'
+	import shinnenkaiFlyer from '$lib/files/shinnenkai2025flyer.pdf';
 
 
+	let { form }: { form: ActionData } = $props();
 	let isChecked = $state(false);
 	let guests: Array<{title: string, name: string}> = $state([]);
 	let guestCount = $derived(guests.length);
@@ -54,15 +59,31 @@
 		<h1 class="title">
 			2025 Shinnenkai
 		</h1>
-		<p class="subtitle">January 2025</p>
+		<p class="subtitle">January 19, 2025 10:00am - 1:00pm |
+			<a class="subtitle" href="https://maps.app.goo.gl/3BMHriobaGaNzDf16"><span class="icon"><FaMapAlt /></span> Natsunoya Tea House</a>
+		</p>
 	</div>
 </section>
 <section class="section">
 	<div class="content">
-		<h2>Information about the event</h2>
-		<p>
-			Maybe there will be an image of the flyer and dates and event information would go here.
-		</p>
+		<figure class="image">
+			<img src={eventImage} alt="2025 Shinnenkai" />
+		</figure>
+	</div>
+</section>
+<section class="section">
+	<div class="container">
+		<div class="content">
+			<p class="is-size-5">
+				We welcome our members and their guests to ring in the new year at our 2025 Shinnenkai on January 19, 2025 at the iconic Natsunoya Tea House from 10:00am - 1:00pm. Seats are $65.00 per person. Come and enjoy delicious food and views, bring home <strong>bake sale and country store</strong> goodies, try your luck with <strong>Fukubukuro</strong> and <strong>Lucky Me</strong>, enjoy special <strong>entertainment</strong> and more!
+			</p>
+			<p>
+				We welcome Lucky Me, Bake Sale & Country Store Donations! For more information contact Staci Yoshihara and Corday Feagins at <a href="mailto:programs@jwsf.org">programs@jwsf.org</a>.
+			</p>
+			<p>
+				While we encourge our members to register online using the form below, members can download a copy of the flyer to register by mail. <a href={shinnenkaiFlyer}>Download Flyer</a>
+			</p>
+		</div>
 	</div>
 </section>
 <section class="section">
@@ -70,9 +91,16 @@
 		<div class="content">
 			<div class="box">
 				<h2>Registration Form</h2>
-				<p>
-					Information about registration goes here. Manage expectations for users.
-				</p>
+				{#if form?.success}
+				<div class="notification is-success is-light">
+					<p>Thank you for registering for the 2025 Shinnenkai. We look forward to seeing you on January 19, 2025 at Natsunoya Tea House. A confirmation email has been sent you with further instructions.</p>
+				</div>
+				{/if}
+				{#if form?.error}
+					<div class="notification is-error is-light">
+						<p>It looks like there has been an error with your registration. Please contact hello@jwsf.org</p>
+					</div>
+				{/if}
 				<form name="shinnenkai rsvp" method="POST" use:enhance={({ formData }) => {
 					
 					let guestInfo = createGuestInfo();
@@ -165,7 +193,7 @@
 					</div>
 					<div class="field">
 						<div class="control">
-							<p class="is-size-4-table is-size-5-mobile has-text-weight-semibold">Total: {guests.length + 1} {(guests.length + 1) === 1 ? `Seat` : 'Seats'} X $65.00 = ${total}.00</p>
+							<p class="is-size-4-tablet is-size-5-mobile has-text-weight-semibold">Total: {guests.length + 1} x $65.00 = ${total}.00</p>
 						</div>
 					</div>
 					<div class="field">

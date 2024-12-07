@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { page } from '$app/stores';
 	import * as config from '$lib/config';
 	import type { PageData } from './$types';
 	import Markdown from 'svelte-exmarkdown';
@@ -9,6 +8,7 @@
 
 <svelte:head>
 	<title>{data.title} - {config.title}</title>
+	<meta name="description" content={data.description} />
 </svelte:head>
 
 <section class="hero is-medium hero-img-med">

@@ -29,6 +29,12 @@ export const actions = {
 				},
 				body: JSON.stringify(parsedData.data)
 			})
+
+			if (response.status !== 200) {
+				return {error: true}
+			}
+
+			return { success: true }
 		}
 	}
 } satisfies Actions;
